@@ -1,0 +1,7 @@
+name: MyWorkflow
+on: push
+jobs:
+  Job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run :  echo "This is Job1 - to print msg in git hub action workflow."

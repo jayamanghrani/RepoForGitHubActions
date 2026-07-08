@@ -1,10 +1,14 @@
-name: MyWorkflow
-on: push
+name: MyWorkflow with filter
+on:
+  push:
+    paths:
+      - 'src/**'
+
 jobs:
   InitialJob:
     runs-on: ubuntu-latest
     steps:
-      - run :  echo "This is Job1 - to print msg in git hub action workflow."
+      - run :  echo "job Triggered because a file inside src/ changed."
   Build:
     needs: InitialJob
     runs-on: ubuntu-latest

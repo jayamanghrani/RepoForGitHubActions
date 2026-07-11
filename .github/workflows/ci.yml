@@ -36,7 +36,7 @@ jobs:
       - name: check git
         run: git --version
 
-  checkout-clone-repo6:
+  clone-repo6InstallJava7:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -45,15 +45,12 @@ jobs:
       - name: List files
         run: ls -la
 
-  installJava7:
-    needs: checkout-clone-repo6
-    runs-on: ubuntu-latest
-    steps:
       - name: install java
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'oracle'
+
       - name: print java version
         run: java -version
 

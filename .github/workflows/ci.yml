@@ -64,6 +64,8 @@ jobs:
     needs: installJava7
     runs-on: ubuntu-latest
     steps:
+      - name: checkout code
+        run: actions/checkout@v4
       - run: mvn clean compile
 
   printEnv9:

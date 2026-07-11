@@ -45,7 +45,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'openjdk'
+          distribution: 'oracle'
 
       - name: print java version
         run: java -version

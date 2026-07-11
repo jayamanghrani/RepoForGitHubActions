@@ -24,3 +24,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run : echo "packaging application";
+
+  check-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check git
+        run: git --version
+  checkout-clone-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: action/checkout@v4
+
+      - name: List files
+        run : ls -la

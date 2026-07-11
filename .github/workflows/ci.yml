@@ -10,25 +10,25 @@ jobs:
   InitialJob1:
     runs-on: windows-latest
     steps:
-      - run :  echo "job Triggered because a file inside src/ changed."
+      - run:  echo "job Triggered because a file inside src/ changed."
 
   Build2:
-    needs: InitialJob
+    needs: InitialJob1
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building App"
 
   Test3:
-    needs: Build
+    needs: Build2
     runs-on: ubuntu-latest
     steps:
       - run: echo "Testing Application"
 
   Package4:
-    needs: Test
+    needs: Test3
     runs-on: ubuntu-latest
     steps:
-      - run : echo "packaging application";
+      - run: echo "packaging application";
 
   check-git5:
     runs-on: ubuntu-latest
@@ -43,10 +43,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: List files
-        run : ls -la
+        run: ls -la
 
   installJava7:
-    needs: checkout-clone-repo
+    needs: checkout-clone-repo6
     runs-on: ubuntu-latest
     steps:
       - name: install java
@@ -61,7 +61,7 @@ jobs:
         run: mvn -version
 
   compileproject8:
-    needs: installJava
+    needs: installJava7
     runs-on: ubuntu-latest
     steps:
       - run: mvn clean compile
@@ -69,4 +69,4 @@ jobs:
   printEnv9:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Printing Env Variables spring profile - $SPRING_PROFILE'"
+      - run: echo "Printing Env Variables spring profile - $SPRING_PROFILE"

@@ -58,17 +58,9 @@ jobs:
         run: java -version
 
       - name: maven version
-        run: mvn -version
+        run: mvn clean
 
-  compileproject8:
-    needs: installJava7
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        run: actions/checkout@v4
-      - run: mvn clean compile
-
-  printEnv9:
+  printEnv8:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Printing Env Variables spring profile - $SPRING_PROFILE"

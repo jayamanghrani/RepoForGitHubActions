@@ -1,4 +1,4 @@
-name: MyWorkflow with filter
+name: MyWorkflow with jobs
 on:
   push:
     paths:
@@ -38,3 +38,17 @@ jobs:
 
       - name: List files
         run : ls -la
+  installJava:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'openjdk'
+
+      - name: print java version
+        run: java -version
+
+      - name: maven version
+        run: mvn -version

@@ -3,34 +3,40 @@ on:
   push:
     paths:
       - 'src/**'
+env:
+  SPRING_PROFILE: dev
 
 jobs:
-  InitialJob:
+  InitialJob1:
     runs-on: windows-latest
     steps:
       - run :  echo "job Triggered because a file inside src/ changed."
-  Build:
+
+  Build2:
     needs: InitialJob
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building App"
-  Test:
+
+  Test3:
     needs: Build
     runs-on: ubuntu-latest
     steps:
       - run: echo "Testing Application"
-  Package:
+
+  Package4:
     needs: Test
     runs-on: ubuntu-latest
     steps:
       - run : echo "packaging application";
 
-  check-git:
+  check-git5:
     runs-on: ubuntu-latest
     steps:
       - name: check git
         run: git --version
-  checkout-clone-repo:
+
+  checkout-clone-repo6:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -38,7 +44,9 @@ jobs:
 
       - name: List files
         run : ls -la
-  installJava:
+
+  installJava7:
+    needs: checkout-clone-repo
     runs-on: ubuntu-latest
     steps:
       - name: install java
@@ -46,9 +54,19 @@ jobs:
         with:
           java-version: '21'
           distribution: 'oracle'
-
       - name: print java version
         run: java -version
 
       - name: maven version
         run: mvn -version
+
+  compileproject8:
+    needs: installJava
+    runs-on: ubuntu-latest
+    steps:
+      - run: mvn clean compile
+
+  printEnv9:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Printing Env Variables spring profile - $SPRING_PROFILE'"

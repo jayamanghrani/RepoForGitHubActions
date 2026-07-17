@@ -61,3 +61,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Printing Env Variables spring profile - $SPRING_PROFILE"
+
+  printEnvVariableOfStepAndWF:
+    runs-on: ubuntu-latest
+    steps:
+      - name: env variable wf level
+        run: echo "Env variable wf lvl- $SPRING_PROFILE"
+
+      - name: env variable step lvl
+        env:
+          SPRING_PROFILE: prod
+        run: echo "Env var step level- $SPRING_PROFILE"
+
+      - name: env variable wf lvl
+        run: echo "Env variable wf lvl- $SPRING_PROFILE"
